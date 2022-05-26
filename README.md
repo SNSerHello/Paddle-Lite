@@ -1,5 +1,16 @@
 #  Paddle Lite
 
+## 在Windows下，编译Paddle-Lite
+
+```
+lite\tools\build_windows.bat with_profile with_precision_profile with_extra with_static_mkl use_vs2017 with_opencl
+```
+**注意**：
+
+* 在Windows下，with_precision_profile有bugs，暂时不支持，所以编译的时候请不要加入
+* paddle_lit_opt无法在windows下直接运行，所以使用`python your_path\paddle_lite_opt --help`来获知HOWTO
+* 当前Paddle-Lite仅仅支持python3.5，python3.6与python3.7，其他版本可能存在兼容性问题
+
 [English](README_en.md) | 简体中文
 
   [![Documentation Status](https://img.shields.io/badge/中文文档-最新-brightgreen.svg)](https://www.paddlepaddle.org.cn/lite)  [![Release](https://img.shields.io/github/release/PaddlePaddle/Paddle-Lite.svg)](https://github.com/PaddlePaddle/Paddle-Lite/releases)  [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE) 
