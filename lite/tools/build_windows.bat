@@ -186,13 +186,13 @@ if "%CMAKE_GENERATOR%"=="Ninja" (
 
 if "%BUILD_FOR_CI%"=="ON" (
     call "%vcvarsall_dir%" amd64
-    msbuild /m:%cores% /p:Configuration=%BUILD_TYPE% lite\lite_compile_deps.vcxproj
+    msbuild /m:%cores% /p:Configuration=%BUILD_TYPE% /p:PreferredToolArchitecture=x64 lite\lite_compile_deps.vcxproj
     call:test_server
-    cmake ..   -G "%CMAKE_GENERATOR% Win64" -T host=x64 -DLITE_ON_MODEL_OPTIMIZE_TOOL=ON -DWITH_TESTING=OFF -DLITE_BUILD_EXTRA=ON
-    msbuild /m:%cores% /p:Configuration=%BUILD_TYPE% lite\api\opt.vcxproj
+    cmake ..   -G "%CMAKE_GENERATOR% Win64" -T host=x64 -DWITH_LITE=ON -DLITE_ON_MODEL_OPTIMIZE_TOOL=ON -DWITH_TESTING=OFF -DLITE_BUILD_EXTRA=ON
+    msbuild /m:%cores% /p:Configuration=%BUILD_TYPE% /p:PreferredToolArchitecture=x64 lite\api\opt.vcxproj
 ) else if "%BUILD_PLATFORM%"=="x64" (
     call "%vcvarsall_dir%" amd64
-    msbuild /maxcpucount:%cores% /p:Configuration=%BUILD_TYPE% lite\publish_inference.vcxproj
+    msbuild /maxcpucount:%cores% /p:Configuration=%BUILD_TYPE% /p:PreferredToolArchitecture=x64 lite\publish_inference.vcxproj
 ) else (
     call "%vcvarsall_dir%" x86
     msbuild /maxcpucount:%cores% /p:Configuration=%BUILD_TYPE% lite\publish_inference.vcxproj
