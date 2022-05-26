@@ -17,6 +17,20 @@ lite\tools\build_windows.bat with_profile with_precision_profile with_extra with
 lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_python=ON --python_version=3.7 --with_log=ON --with_exception=ON --with_profile=ON --with_precision_profile=ON --with_static_mkl=ON --with_avx=ON --with_opencl=ON
 ```
 
+## 如何查看LOG信息
+
+### Windows
+
+```
+setx GLOG_v 5
+```
+
+### Linux
+
+```
+export GLOG_v=5
+```
+
 [English](README_en.md) | 简体中文
 
 [![Build Status](https://travis-ci.org/PaddlePaddle/Paddle-Lite.svg?branch=develop&longCache=true&style=flat-square)](https://travis-ci.org/PaddlePaddle/Paddle-Lite)  [![Documentation Status](https://img.shields.io/badge/中文文档-最新-brightgreen.svg)](https://paddle-lite.readthedocs.io/zh/develop/)  [![Release](https://img.shields.io/github/release/PaddlePaddle/Paddle-Lite.svg)](https://github.com/PaddlePaddle/Paddle-Lite/releases)  [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)
