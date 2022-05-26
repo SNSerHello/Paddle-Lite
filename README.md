@@ -11,7 +11,7 @@ lite\tools\build_windows.bat with_profile with_precision_profile with_extra with
 * paddle_lit_opt无法在windows下直接运行，所以使用`python your_path\paddle_lite_opt --help`来获知HOWTO
 * 当前Paddle-Lite仅仅支持python3.5，python3.6与python3.7，其他版本可能存在兼容性问题
 
-## 在Windows下，编译Paddle-Lite
+## 在Linux下，编译Paddle-Lite
 
 ```
 lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_python=ON --python_version=3.7 --with_log=ON --with_exception=ON --with_profile=ON --with_precision_profile=ON --with_static_mkl=ON --with_avx=ON --with_opencl=ON
