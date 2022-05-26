@@ -31,6 +31,14 @@ setx GLOG_v 5
 export GLOG_v=5
 ```
 
+## Debug Paddle-Lite程序
+
+### Linux
+
+```
+strace python xxx.py
+```
+
 [English](README_en.md) | 简体中文
 
   [![Documentation Status](https://img.shields.io/badge/中文文档-最新-brightgreen.svg)](https://www.paddlepaddle.org.cn/lite)  [![Release](https://img.shields.io/github/release/PaddlePaddle/Paddle-Lite.svg)](https://github.com/PaddlePaddle/Paddle-Lite/releases)  [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE) 
