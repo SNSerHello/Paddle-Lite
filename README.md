@@ -23,10 +23,11 @@ $ lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_py
 以mobilenet v1模型为样例
 
 ```
+$ cd test
 $ wget http://paddle-inference-dist.bj.bcebos.com/mobilenet_v1.tar.gz
 $ tar xvzf mobilenet_v1.tar.gz
-$ paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --optimize_
-out mobilenet_v1_opencl --valid_targets opencl
+$ paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --optimize_out mobilenet_v1_opencl --valid_targets opencl
+$ python3 test_paddlelite_opencl.py
 ```
 
 
