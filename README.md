@@ -15,7 +15,7 @@
 ## 在Linux下，编译Paddle-Lite
 
 ```
-lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_python=ON --python_version=3.7 --with_log=ON --with_exception=ON --with_profile=ON --with_precision_profile=ON --with_static_mkl=ON --with_avx=ON --with_opencl=ON
+$ lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_python=ON --python_version=3.7 --with_log=ON --with_exception=ON --with_profile=ON --with_precision_profile=ON --with_static_mkl=ON --with_avx=ON --with_opencl=ON
 ```
 
 ## 如何查看LOG信息
