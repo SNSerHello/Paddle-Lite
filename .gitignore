@@ -129,3 +129,6 @@ lite/backends/opencl/utils/tune_cache_generated.h
 third-party/glog
 third-party/protobuf-host
 null
+test/._mobilenet_v1
+test/mobilenet_v1.tar.gz
+test/mobilenet_v1
