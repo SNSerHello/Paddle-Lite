@@ -18,6 +18,18 @@
 $ lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_python=ON --python_version=3.7 --with_log=ON --with_exception=ON --with_profile=ON --with_precision_profile=ON --with_static_mkl=ON --with_avx=ON --with_opencl=ON
 ```
 
+## 通过paddle_lite_opt制作模型优化文件
+
+以mobilenet v1模型为样例
+
+```
+$ wget http://paddle-inference-dist.bj.bcebos.com/mobilenet_v1.tar.gz
+$ tar xvzf mobilenet_v1.tar.gz
+$ paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --optimize_
+out mobilenet_v1_opencl --valid_targets opencl
+```
+
+
 ## 如何查看LOG信息
 
 ### Windows
