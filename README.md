@@ -3,7 +3,8 @@
 ## 在Windows下，编译Paddle-Lite
 
 ```
-lite\tools\build_windows.bat with_profile with_extra with_static_mkl with_opencl use_vs2017
+1. where python
+2. lite\tools\build_windows.bat with_profile with_extra with_static_mkl with_opencl use_vs2017
 ```
 **注意**：
 
