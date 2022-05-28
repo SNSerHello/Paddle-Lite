@@ -124,3 +124,5 @@ third-party/*
 
 # hiai libs
 ai_ddk_lib*
+lite/backends/opencl/opencl_kernels_source.cc
+lite/backends/opencl/utils/tune_cache_generated.h
