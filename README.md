@@ -3,7 +3,7 @@
 ## 在Windows下，编译Paddle-Lite
 
 ```
-lite\tools\build_windows.bat with_profile with_precision_profile with_extra with_static_mkl use_vs2017 with_opencl
+lite\tools\build_windows.bat with_profile with_extra with_static_mkl with_opencl use_vs2017
 ```
 **注意**：
 
