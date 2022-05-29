@@ -1,5 +1,7 @@
 #include "paddle_api.h"
+#include <fstream>
 #include <iostream>
+#include <iterator>
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgcodecs.hpp>
@@ -74,8 +76,21 @@ int main(void) {
     return (output_data[pos1] > output_data[pos2]);
   });
 
-  // Step6: Print results
-  std::cout << "TOP5 index: ";
+  // Step6: Read labels from synset.txt
+  std::vector<std::string> labels;
+  {
+    std::ifstream ifs("synset.txt");
+    // std::copy(std::istream_iterator<std::string>(ifs),
+    //           std::istream_iterator<std::string>(),
+    //           std::back_inserter(labels));
+    std::string label;
+    while (std::getline(ifs, label)) {
+      labels.emplace_back(label);
+    }
+  }
+
+  // Step7: Print results
+  std::cout << "TOP5 index : ";
   for (int i = 0; i < 5; i++) {
     if (i == 0)
       std::cout << "[";
@@ -84,13 +99,22 @@ int main(void) {
     std::cout << o_index[i];
   }
   std::cout << "]" << std::endl;
-  std::cout << "TOP5 probs: ";
+  std::cout << "TOP5 probs : ";
   for (int i = 0; i < 5; i++) {
     if (i == 0)
       std::cout << "[";
     else
       std::cout << ", ";
     std::cout << output_data[o_index[i]];
+  }
+  std::cout << "]" << std::endl;
+  std::cout << "TOP5 labels: ";
+  for (int i = 0; i < 5; i++) {
+    if (i == 0)
+      std::cout << "[";
+    else
+      std::cout << ", ";
+    std::cout << labels[o_index[i]];
   }
   std::cout << "]" << std::endl;
 }
