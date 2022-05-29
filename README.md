@@ -53,6 +53,18 @@ export GLOG_v=5
 strace python xxx.py
 ```
 
+## 如何在Windows下编译运行C++推断程序
+
+```
+1. cd test
+2. mkdir build
+3. cd build
+4. cmake ..
+5. msbuild /p:Configuration=Release test_paddlelite_opencl.vcxproj
+6. cd ..
+7. build\Release\test_paddlelite_opencl.exe
+```
+
 [English](README_en.md) | 简体中文
 
 [![Build Status](https://travis-ci.org/PaddlePaddle/Paddle-Lite.svg?branch=develop&longCache=true&style=flat-square)](https://travis-ci.org/PaddlePaddle/Paddle-Lite)  [![Documentation Status](https://img.shields.io/badge/中文文档-最新-brightgreen.svg)](https://paddle-lite.readthedocs.io/zh/develop/)  [![Release](https://img.shields.io/github/release/PaddlePaddle/Paddle-Lite.svg)](https://github.com/PaddlePaddle/Paddle-Lite/releases)  [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)
