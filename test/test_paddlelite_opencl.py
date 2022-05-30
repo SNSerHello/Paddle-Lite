@@ -12,7 +12,7 @@ img = (
         np.asarray(Image.open("cat.jpg").crop((200, 0, 1400, 1200)).resize((224, 224)))
         / 255.0
     )
-    .astype(np.float32)
+    .astype(np.float32)[..., ::-1]
     .transpose((2, 0, 1))[np.newaxis, ...]
 )
 
