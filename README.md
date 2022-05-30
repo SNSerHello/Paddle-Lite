@@ -59,7 +59,7 @@ strace python xxx.py
 1. cd test
 2. mkdir build
 3. cd build
-4. cmake ..
+4. cmake -G "Visual Studio 15 2017 Win64" ..
 5. msbuild /p:Configuration=Release test_paddlelite_opencl.vcxproj
 6. cd ..
 7. build\Release\test_paddlelite_opencl.exe
