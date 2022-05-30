@@ -60,9 +60,10 @@ strace python xxx.py
 2. mkdir build
 3. cd build
 4. cmake -G "Visual Studio 15 2017 Win64" ..
-5. msbuild /p:Configuration=Release test_paddlelite_opencl.vcxproj
-6. cd ..
-7. build\Release\test_paddlelite_opencl.exe
+5. "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2017\Visual Studio Tools\VC\x64 Native Tools Command Prompt for VS 2017.lnk"
+6. msbuild /p:Configuration=Release test_paddlelite_opencl.vcxproj
+7. cd ..
+8. build\Release\test_paddlelite_opencl.exe
 ```
 
 [English](README_en.md) | 简体中文
