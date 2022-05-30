@@ -45,12 +45,12 @@ int main(void) {
   lite::MobileConfig config;
   config.set_model_from_file(nbfname);
   std::shared_ptr<lite::PaddlePredictor> predictor =
-      lite::CreatePaddlePredictor<lite::MobileConfig>(config);
+    lite::CreatePaddlePredictor<lite::MobileConfig>(config);
 
   // Step3: Load data into predictor
   {
     std::unique_ptr<lite::Tensor> input_tensor(
-        std::move(predictor->GetInput(0)));
+      std::move(predictor->GetInput(0)));
     input_tensor->Resize({1, 3, 224, 224});
     float *input_data = input_tensor->mutable_data<float>();
     std::vector<cv::Mat> channels(3);
@@ -66,7 +66,7 @@ int main(void) {
 
   // Step5: Get results
   std::unique_ptr<const lite::Tensor> output_tensor(
-      std::move(predictor->GetOutput(0)));
+    std::move(predictor->GetOutput(0)));
   const float *output_data = output_tensor->data<float>();
   int o_index[1000];
   for (int i = 0; i < 1000; i++) {
