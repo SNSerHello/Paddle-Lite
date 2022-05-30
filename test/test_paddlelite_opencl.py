@@ -24,8 +24,19 @@ out = predictor.get_output(0).numpy()
 with open("synset.txt", "r", encoding="utf-8") as f:
     labels = np.array([line.strip() for line in f if line.strip()])
 
-from scipy.special import softmax
+# Mobilenet v1 has included softmax
+# from scipy.special import softmax
+# out = softmax(out, axis=-1)
 
-out = softmax(out, axis=-1)
 o_index = out.argsort(axis=-1)[..., -5:][..., ::-1]
-print(o_index.ravel(), out[..., o_index].ravel(), labels[o_index].ravel())
+print(
+    """
+Top5 index  : {}
+Top5 probs  : {}
+Top5 labels : {}
+""".format(
+        o_index.ravel(),
+        out[..., o_index].ravel(),
+        "\n{}".format(" " * 14).join(labels[o_index].ravel()),
+    )
+)
