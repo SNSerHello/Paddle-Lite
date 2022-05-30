@@ -17,6 +17,7 @@ img = (
 )
 
 input_tensor = predictor.get_input(0)
+# input_tensor.resize((1, 3, 224, 224))
 input_tensor.from_numpy(img)
 predictor.run()
 out = predictor.get_output(0).numpy()
