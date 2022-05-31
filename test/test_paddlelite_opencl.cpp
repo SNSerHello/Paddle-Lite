@@ -113,7 +113,7 @@ int main(void) {
     if (i == 0)
       std::cout << "[";
     else
-      std::cout << ", ";
+      std::cout << std::endl << std::string(14, ' ');
     std::cout << labels[o_index[i]];
   }
   std::cout << "]" << std::endl;
