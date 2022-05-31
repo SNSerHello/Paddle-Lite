@@ -68,6 +68,15 @@ strace python xxx.py
 10. build\Release\test_paddlelite_opencl.exe
 ```
 
+## 使用ONNX推断Predict-Lite模型
+
+```
+$ pip3 install --upgrade paddle2onnx==0.8.2
+$ paddle2onnx --model_dir mobilenet_v1 --opset_version 9 --save_file mobilenet_v1.onnx --enable_onnx_checker True
+$ pip3 install --upgrade onnxruntime
+```
+
+
 [English](README_en.md) | 简体中文
 
 [![Build Status](https://travis-ci.org/PaddlePaddle/Paddle-Lite.svg?branch=develop&longCache=true&style=flat-square)](https://travis-ci.org/PaddlePaddle/Paddle-Lite)  [![Documentation Status](https://img.shields.io/badge/中文文档-最新-brightgreen.svg)](https://paddle-lite.readthedocs.io/zh/develop/)  [![Release](https://img.shields.io/github/release/PaddlePaddle/Paddle-Lite.svg)](https://github.com/PaddlePaddle/Paddle-Lite/releases)  [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)
