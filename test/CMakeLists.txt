@@ -10,7 +10,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /bigobj /MT")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 link_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../lite/api)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../build.lite.x86.opencl/inference_lite_lib/cxx/include)
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../build.lite.x86.opencl/inference_lite_lib/cxx/lib)
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../build.lite.x86.opencl/third_party/mklml/src/extern_mklml/lib)
 
