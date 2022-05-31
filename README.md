@@ -76,6 +76,15 @@ $ paddle2onnx --model_dir mobilenet_v1 --opset_version 9 --save_file mobilenet_v
 $ pip3 install --upgrade onnxruntime
 ```
 
+## 下载最新Netron
+
+访问[Netron Release](https://github.com/lutzroeder/netron/releases)，下载最新的netron版本。
+
+2022年5月31日当前最新版本是5.8.2，可以通过如下命令下载：
+```
+$ wget https://github.com/lutzroeder/netron/releases/download/v5.8.2/Netron-Setup-5.8.2.exe
+```
+
 
 [English](README_en.md) | 简体中文
 
