@@ -12,7 +12,7 @@ img = (
     .transpose((2, 0, 1))[np.newaxis, ...]
 )
 
-sess = ort.InferenceSession("mobilenet_v1.onnx")
+sess = ort.InferenceSession("mobilenet_v1.onnx", providers=["CPUExecutionProvider"])
 input_name = sess.get_inputs()[0].name
 output_name = sess.get_outputs()[0].name
 print(
