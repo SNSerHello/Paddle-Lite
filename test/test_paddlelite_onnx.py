@@ -12,16 +12,18 @@ img = (
     .transpose((2, 0, 1))[np.newaxis, ...]
 )
 
-sess = ort.InferenceSession("mobilenet_v1.onnx", providers=["CPUExecutionProvider"])
+onnx_mobilenet = "mobilenet_v1.onnx"
+# onnx_mobilenet = "mobilenetv2-12.onnx"
+sess = ort.InferenceSession(onnx_mobilenet, providers=["CPUExecutionProvider"])
 input_name = sess.get_inputs()[0].name
 output_name = sess.get_outputs()[0].name
 print(
     """
-mobilenet v1
+{}
     input name  : {}
     output name : {}
         """.format(
-        input_name, output_name
+        onnx_mobilenet, input_name, output_name
     )
 )
 out = sess.run(output_names=[output_name], input_feed={input_name: img})[0]
