@@ -89,6 +89,7 @@ $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.2/Netron-Setu
 [anaconda3 in dockerhub](https://hub.docker.com/r/snser/anaconda3)
 
 ```
+$ docker login
 $ docker pull snser/anaconda3
 $ docker run -itv your_path/Paddle-Lite:/workspace -w /workspace snser/anaconda3 /bin/bash
 $ conda env list
