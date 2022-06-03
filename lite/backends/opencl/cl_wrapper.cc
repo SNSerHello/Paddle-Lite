@@ -78,6 +78,7 @@ bool CLWrapper::InitHandle() {
     "/usr/lib/arm-linux-gnueabihf/libOpenCL.so",
     "/usr/lib/libOpenCL.so",
     "/usr/lib/x86_64-linux-gnu/libOpenCL.so",
+    "/usr/lib/x86_64-linux-gnu/libOpenCL.so.1",
     // Linux OS for intel
     // https://software.intel.com/content/www/us/en/develop/articles/opencl-drivers.html
     "/opt/intel/opencl/linux/compiler/lib/intel64_lin/libOpenCL.so",
