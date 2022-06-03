@@ -70,9 +70,11 @@ strace python xxx.py
 ## 使用ONNX推断Predict-Lite模型
 
 ```
+$ cd test
 $ pip3 install --upgrade paddle2onnx==0.8.2
 $ paddle2onnx --model_dir mobilenet_v1 --opset_version 9 --save_file mobilenet_v1.onnx --enable_onnx_checker True
 $ pip3 install --upgrade onnxruntime
+$ python3 test_paddlelite_onnx.py
 ```
 
 ## 下载最新Netron
