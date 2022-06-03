@@ -30,7 +30,6 @@ $ paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --op
 $ python3 test_paddlelite_opencl.py
 ```
 
-
 ## 如何查看LOG信息
 
 ### Windows
@@ -85,6 +84,17 @@ $ pip3 install --upgrade onnxruntime
 $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.2/Netron-Setup-5.8.2.exe
 ```
 
+## Linux Docker Building Environment in DockerHub
+
+[anaconda3 in dockerhub](https://hub.docker.com/r/snser/anaconda3)
+
+```
+$ docker pull snser/anaconda3
+$ docker run -itv your_path/Paddle-Lite:/workspace -w /workspace snser/anaconda3 /bin/bash
+$ conda env list
+$ conda activate python3.7
+$ lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_python=ON --python_version=3.7 --with_log=ON --with_exception=ON --with_profile=ON --with_precision_profile=ON --with_static_mkl=ON --with_avx=ON --with_opencl=ON
+```
 
 [English](README_en.md) | 简体中文
 
