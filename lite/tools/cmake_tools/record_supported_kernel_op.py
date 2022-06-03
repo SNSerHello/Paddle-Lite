@@ -32,7 +32,7 @@ kernel_op_map_dest_path = sys.argv[4]
 with_extra = sys.argv[5]
 
 out_lines = [
-    '''
+    """
 // Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -53,18 +53,30 @@ out_lines = [
 #include<string>
 
 const std::vector<std::vector<std::string>> supported_ops_target = {
-'''
+"""
 ]
 
 ops_lines = []
 
 # valid targets and valid_ops
 valid_targets = [
-    "kUnk", "kHost", "kX86", "kARM", "kOpenCL", "kAny", "kXPU", "kMetal",
-    "kNNAdapter"
+    "kUnk",
+    "kHost",
+    "kX86",
+    "kCUDA",
+    "kARM",
+    "kOpenCL",
+    "kAny",
+    "kFPGA",
+    "kNPU",
+    "kXPU",
+    "kBM",
+    "kMLU",
+    "kIntelFPGA",
+    "kMetal",
+    "kNNAdapter",
 ]
-valid_ops = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [],
-             [], [], []]
+valid_ops = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
 
 
 class TargetType:
@@ -83,20 +95,30 @@ class TargetType:
 with open(kernels_list_path) as f:
     paths = set([path for path in f])
     for path in paths:
-        with open(path.strip()) as g:
-            c = g.read()
-            kernel_parser = RegisterLiteKernelParser(c)
-            kernel_parser.parse("ON", "ON")
-            for k in kernel_parser.kernels:
-                if hasattr(TargetType, k.target):
-                    index = getattr(TargetType, k.target)
-                    valid_ops[index].append(k.op_type)
+        if sys.version[0] == "3":
+            with open(path.strip(), encoding="utf-8") as g:
+                c = g.read()
+                kernel_parser = RegisterLiteKernelParser(c)
+                kernel_parser.parse("ON", "ON")
+                for k in kernel_parser.kernels:
+                    if hasattr(TargetType, k.target):
+                        index = getattr(TargetType, k.target)
+                        valid_ops[index].append(k.op_type)
+        else:
+            with open(path.strip()) as g:
+                c = g.read()
+                kernel_parser = RegisterLiteKernelParser(c)
+                kernel_parser.parse("ON", "ON")
+                for k in kernel_parser.kernels:
+                    if hasattr(TargetType, k.target):
+                        index = getattr(TargetType, k.target)
+                        valid_ops[index].append(k.op_type)
 # record op_info of valid kernels into `valid_ops` according to different target type
 with open(faked_kernels_list_path) as f:
     paths = set([path for path in f])
     for path in paths:
-        if (sys.version[0] == '3'):
-            with open(path.strip(), encoding='utf-8') as g:
+        if sys.version[0] == "3":
+            with open(path.strip(), encoding="utf-8") as g:
                 c = g.read()
                 kernel_parser = RegisterLiteKernelParser(c)
                 kernel_parser.parse("ON", "ON")
@@ -142,23 +164,21 @@ with open(ops_list_path) as f:
                 out = out + 'kUnk" }}'
             ops_lines.append(out)
 
-with open(kernel_op_map_dest_path, 'w') as f:
+with open(kernel_op_map_dest_path, "w") as f:
     logging.info("write kernel list to %s" % kernel_op_map_dest_path)
-    f.write('\n'.join(out_lines))
+    f.write("\n".join(out_lines))
     # write kernels into head file
     for target in valid_targets:
         if len(valid_ops[getattr(TargetType, target)]) == 0:
             f.write("\n    // %s_OPS: " % target)
-            f.write('\n    {},')
+            f.write("\n    {},")
         else:
             f.write("\n    // %s_OPS: " % target)
             f.write('\n    {"')
             f.write('","'.join(valid_ops[getattr(TargetType, target)]))
             f.write('"},\n')
-    f.write('};')
+    f.write("};")
     # write op info into head file
-    f.write(
-        '\nconst std::map<std::string, std::vector<std::string>> supported_ops={\n'
-    )
-    f.write(',\n'.join(ops_lines))
-    f.write('\n};')
+    f.write("\nconst std::map<std::string, std::vector<std::string>> supported_ops={\n")
+    f.write(",\n".join(ops_lines))
+    f.write("\n};")
