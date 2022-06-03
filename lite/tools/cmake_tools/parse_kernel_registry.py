@@ -29,9 +29,9 @@ with_extra = sys.argv[6]
 enable_arm_fp16 = sys.argv[7]
 
 out_lines = [
-    '#pragma once',
+    "#pragma once",
     '#include "paddle_lite_factory_helper.h"',
-    '',
+    "",
 ]
 minlines = set()
 if tailored == "ON":
@@ -41,33 +41,62 @@ if tailored == "ON":
 with open(kernels_list_path) as f:
     paths = set([path for path in f])
     for path in paths:
-        with open(path.strip()) as g:
-            c = g.read()
-            kernel_parser = RegisterLiteKernelParser(c)
-            kernel_parser.parse(with_extra, enable_arm_fp16)
+        if sys.version[0] == "3":
+            with open(path.strip(), encoding="utf-8") as g:
+                c = g.read()
+                kernel_parser = RegisterLiteKernelParser(c)
+                kernel_parser.parse(with_extra, enable_arm_fp16)
 
-            for k in kernel_parser.kernels:
-                kernel = "%s,%s,%s,%s,%s" % (
-                    k.op_type,
-                    k.target,
-                    k.precision,
-                    k.data_layout,
-                    k.alias, )
-                if tailored == "ON":
-                    if kernel not in minlines: continue
-                key = "USE_LITE_KERNEL(%s, %s, %s, %s, %s);" % (
-                    k.op_type,
-                    k.target,
-                    k.precision,
-                    k.data_layout,
-                    k.alias, )
-                out_lines.append(key)
+                for k in kernel_parser.kernels:
+                    kernel = "%s,%s,%s,%s,%s" % (
+                        k.op_type,
+                        k.target,
+                        k.precision,
+                        k.data_layout,
+                        k.alias,
+                    )
+                    if tailored == "ON":
+                        if kernel not in minlines:
+                            continue
+                    key = "USE_LITE_KERNEL(%s, %s, %s, %s, %s);" % (
+                        k.op_type,
+                        k.target,
+                        k.precision,
+                        k.data_layout,
+                        k.alias,
+                    )
+                    out_lines.append(key)
+        else:
+            with open(path.strip()) as g:
+                c = g.read()
+                kernel_parser = RegisterLiteKernelParser(c)
+                kernel_parser.parse(with_extra, enable_arm_fp16)
+
+                for k in kernel_parser.kernels:
+                    kernel = "%s,%s,%s,%s,%s" % (
+                        k.op_type,
+                        k.target,
+                        k.precision,
+                        k.data_layout,
+                        k.alias,
+                    )
+                    if tailored == "ON":
+                        if kernel not in minlines:
+                            continue
+                    key = "USE_LITE_KERNEL(%s, %s, %s, %s, %s);" % (
+                        k.op_type,
+                        k.target,
+                        k.precision,
+                        k.data_layout,
+                        k.alias,
+                    )
+                    out_lines.append(key)
 
 with open(faked_kernels_list_path) as f:
     paths = set([path for path in f])
     for path in paths:
-        if (sys.version[0] == '3'):
-            with open(path.strip(), encoding='utf-8') as g:
+        if sys.version[0] == "3":
+            with open(path.strip(), encoding="utf-8") as g:
                 c = g.read()
                 kernel_parser = RegisterLiteKernelParser(c)
                 kernel_parser.parse(with_extra, "ON")
@@ -78,15 +107,18 @@ with open(faked_kernels_list_path) as f:
                         k.target,
                         k.precision,
                         k.data_layout,
-                        k.alias, )
+                        k.alias,
+                    )
                     if tailored == "ON":
-                        if kernel not in minlines: continue
+                        if kernel not in minlines:
+                            continue
                     key = "USE_LITE_KERNEL(%s, %s, %s, %s, %s);" % (
                         k.op_type,
                         k.target,
                         k.precision,
                         k.data_layout,
-                        k.alias, )
+                        k.alias,
+                    )
                     out_lines.append(key)
         else:
             with open(path.strip()) as g:
@@ -100,17 +132,20 @@ with open(faked_kernels_list_path) as f:
                         k.target,
                         k.precision,
                         k.data_layout,
-                        k.alias, )
+                        k.alias,
+                    )
                     if tailored == "ON":
-                        if kernel not in minlines: continue
+                        if kernel not in minlines:
+                            continue
                     key = "USE_LITE_KERNEL(%s, %s, %s, %s, %s);" % (
                         k.op_type,
                         k.target,
                         k.precision,
                         k.data_layout,
-                        k.alias, )
+                        k.alias,
+                    )
                     out_lines.append(key)
 
-with open(dest_path, 'w') as f:
+with open(dest_path, "w") as f:
     logging.info("write kernel list to %s" % dest_path)
-    f.write('\n'.join(out_lines))
+    f.write("\n".join(out_lines))
