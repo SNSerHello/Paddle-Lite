@@ -72,12 +72,13 @@ strace python xxx.py
 ```
 1 sudo apt install libopencv-dev
 2. cd test
-3. mkdir build
-4. cd build
-5. cmake ..
-6. make
-7. cd ..
-8. ./build/test_paddlelite_opencl
+3. paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --optimize_out mobilenet_v1_opencl --valid_targets opencl
+4. mkdir build
+5. cd build
+6. cmake ..
+7. make
+8. cd ..
+9. ./build/test_paddlelite_opencl
 ```
 
 ## 使用ONNX推断Predict-Lite模型
