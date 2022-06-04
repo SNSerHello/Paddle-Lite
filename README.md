@@ -58,7 +58,7 @@ strace python xxx.py
 1. cd test
 2. mkdir build
 3. cd build
-4. cmake -G "Visual Studio 15 2017 Win64" ..
+4. cmake -DWIN64=1 -G "Visual Studio 15 2017 Win64" ..
 5. set curr_dir=%cd%
 6. "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2017\Visual Studio Tools\VC\x64 Native Tools Command Prompt for VS 2017.lnk"
 7. cd %curr_dir% 
