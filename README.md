@@ -67,6 +67,19 @@ strace python xxx.py
 10. build\Release\test_paddlelite_opencl.exe
 ```
 
+## 如何在Linux下编译运行C++推断程序
+
+```
+1 sudo apt install libopencv-dev
+2. cd test
+3. mkdir build
+4. cd build
+5. cmake ..
+6. make
+7. cd ..
+8. ./build/test_paddlelite_opencl
+```
+
 ## 使用ONNX推断Predict-Lite模型
 
 ```
@@ -98,6 +111,7 @@ $ conda env list
 $ conda activate python3.7
 $ lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_python=ON --python_version=3.7 --with_log=ON --with_exception=ON --with_profile=ON --with_precision_profile=ON --with_static_mkl=ON --with_avx=ON --with_opencl=ON
 ```
+
 
 [English](README_en.md) | 简体中文
 
