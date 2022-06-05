@@ -112,6 +112,7 @@ $ python3 test_paddlelite_onnx.py
 2022年5月31日当前最新版本是5.8.2，可以通过如下命令下载：
 ```
 $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.2/Netron-Setup-5.8.2.exe
+$ wget https://github.com/lutzroeder/netron/releases/download/v5.8.4/Netron-Setup-5.8.4.exe
 ```
 
 ## Linux Docker Building Environment in DockerHub
