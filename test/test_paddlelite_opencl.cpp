@@ -1,7 +1,6 @@
 #include "paddle_api.h"
 #include <assert.h>
 #include <fstream>
-#include <hiredis/hiredis.h>
 #include <iostream>
 #include <iterator>
 #include <opencv2/core.hpp>
@@ -9,6 +8,10 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/opencv.hpp>
 #include <vector>
+#if defined(WIN64) || defined(WIN32)
+#else
+#include <hiredis/hiredis.h>
+#endif
 
 #define lite paddle::lite_api
 // using lite = paddle::lite_api;
@@ -55,7 +58,7 @@ int main(void) {
   lite::MobileConfig config;
   config.set_model_from_file(nbfname);
   std::shared_ptr<lite::PaddlePredictor> predictor =
-      lite::CreatePaddlePredictor<lite::MobileConfig>(config);
+    lite::CreatePaddlePredictor<lite::MobileConfig>(config);
 
   // Step3: Load data into predictor
   std::unique_ptr<lite::Tensor> input_tensor(std::move(predictor->GetInput(0)));
@@ -89,7 +92,7 @@ int main(void) {
   {
     // Step6: Get results
     std::unique_ptr<const lite::Tensor> output_tensor(
-        std::move(predictor->GetOutput(0)));
+      std::move(predictor->GetOutput(0)));
     const float *output_data = output_tensor->data<float>();
     int o_index[1000];
     for (int i = 0; i < 1000; i++) {
@@ -129,14 +132,16 @@ int main(void) {
     std::cout << "]" << std::endl;
   }
 
-  std::cout << std::string(69, '-') << std::endl;
-
   //  ____          _ _
   // |  _ \ ___  __| (_)___
   // | |_) / _ \/ _` | / __|
   // |  _ <  __/ (_| | \__ \
   // |_| \_\___|\__,_|_|___/
   //
+#if defined(WIN64) || defined(WIN32)
+#else
+  std::cout << std::string(69, '-') << std::endl;
+
   redisContext *conn = redisConnect("127.0.0.1", 6379);
   redisReply *r = (redisReply *)redisCommand(conn, "hget cv cat");
   assert(r != nullptr);
@@ -145,16 +150,16 @@ int main(void) {
       memcpy(input_data, r->str, 3 * 224 * 224 * sizeof(float));
       predictor->Run();
       std::unique_ptr<const lite::Tensor> output_tensor(
-          std::move(predictor->GetOutput(0)));
+        std::move(predictor->GetOutput(0)));
       const float *output_data = output_tensor->data<float>();
       int o_index[1000];
       for (int i = 0; i < 1000; i++) {
         o_index[i] = i;
       }
       std::sort(&o_index[0], &o_index[1000],
-                [&output_data](int pos1, int pos2) {
-                  return (output_data[pos1] > output_data[pos2]);
-                });
+      [&output_data](int pos1, int pos2) {
+        return (output_data[pos1] > output_data[pos2]);
+      });
       std::cout << "TOP5 index : ";
       for (int i = 0; i < 5; i++) {
         if (i == 0)
@@ -211,6 +216,7 @@ int main(void) {
   }
   freeReplyObject(r);
   redisFree(conn);
+#endif
 
   return 0;
 }
