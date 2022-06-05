@@ -73,7 +73,9 @@ strace python xxx.py
 01. sudo apt install libopencv-dev
 02. sudo docker login
 03. sudo docker pull redis:latest 
-04. sudo docker run -itd --name transformer -p 6379:6379 redis
+04. sudo docker run -itd --name transformer -p 6379:6379 redis # default ip address: 127.0.0.1
+    OR service on host address used by outside network
+    sudo docker run -itd --name transformer -p `hostname -I | cut -d ' ' -f 1`:6379:6379 redis
 05. sudo apt install redis-tools
 06. redis-cli
 127.0.0.1:6379> ping
