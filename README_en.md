@@ -1,5 +1,136 @@
 # Paddle Lite
 
+## 在Windows下，编译Paddle-Lite
+
+```
+1. where python
+2. lite\tools\build_windows.bat with_profile with_extra with_static_mkl with_opencl use_vs2017
+```
+**注意**：
+
+* 在Windows下，with_precision_profile有bugs，暂时不支持，所以编译的时候请不要加入
+* paddle_lit_opt无法在windows下直接运行，所以使用`python your_path\paddle_lite_opt --help`来获知HOWTO
+* 当前Paddle-Lite仅仅支持python3.5，python3.6与python3.7，其他版本可能存在兼容性问题
+
+## 在Linux下，编译Paddle-Lite
+
+```
+$ lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_python=ON --python_version=3.7 --with_log=ON --with_exception=ON --with_profile=ON --with_precision_profile=ON --with_static_mkl=ON --with_avx=ON --with_opencl=ON
+```
+
+## 通过paddle_lite_opt制作模型优化文件
+
+以mobilenet v1模型为样例
+
+```
+$ cd test
+$ wget http://paddle-inference-dist.bj.bcebos.com/mobilenet_v1.tar.gz
+$ tar xvzf mobilenet_v1.tar.gz
+$ paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --optimize_out mobilenet_v1_opencl --valid_targets opencl
+$ python3 test_paddlelite_opencl.py
+```
+
+## 如何查看LOG信息
+
+### Windows
+
+```
+setx GLOG_v 5
+```
+
+### Linux
+
+```
+export GLOG_v=5
+```
+
+## Debug Paddle-Lite程序
+
+### Linux
+
+```
+strace python xxx.py
+```
+
+## 如何在Windows下编译运行C++推断程序
+
+```
+01. cd test
+02. mkdir build
+03. cd build
+04. cmake -DWIN64=1 -G "Visual Studio 15 2017 Win64" ..
+05. set curr_dir=%cd%
+06. "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2017\Visual Studio Tools\VC\x64 Native Tools Command Prompt for VS 2017.lnk"
+07. cd %curr_dir% 
+08. msbuild /p:Configuration=Release test_paddlelite_opencl.vcxproj
+09. cd ..
+10. build\Release\test_paddlelite_opencl.exe
+```
+
+## 如何在Linux下编译运行C++推断程序
+
+```
+01. sudo apt install libopencv-dev
+02. sudo docker login
+03. sudo docker pull redis:latest 
+04. sudo docker run -itd --name transformer -p 6379:6379 redis # default ip address: 127.0.0.1
+    OR service on host address used by outside network
+    sudo docker run -itd --name transformer -p `hostname -I | cut -d ' ' -f 1`:6379:6379 redis
+05. sudo apt install redis-tools
+06. redis-cli
+127.0.0.1:6379> ping
+PONG
+127.0.0.1:6379> exit
+07. sudo pip3 install --upgrade redis
+08. cd test
+09. wget http://paddle-inference-dist.bj.bcebos.com/mobilenet_v1.tar.gz
+10. tar xvzf mobilenet_v1.tar.gz
+11. paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --optimize_out mobilenet_v1_opencl --valid_targets opencl
+12. mkdir build
+14. cd build
+15. cmake ..
+16. make
+17. cd ..
+18. python3 test_redis.py
+19. ./build/test_redis
+20. ./build/test_paddlelite_opencl
+21. python3 test_paddlelite_opencl.py
+```
+
+## 使用ONNX推断Predict-Lite模型
+
+```
+$ cd test
+$ pip3 install --upgrade paddle2onnx==0.8.2
+$ paddle2onnx --model_dir mobilenet_v1 --opset_version 9 --save_file mobilenet_v1.onnx --enable_onnx_checker True
+$ pip3 install --upgrade onnxruntime
+$ python3 test_paddlelite_onnx.py
+```
+
+## 下载最新Netron
+
+访问[Netron Release](https://github.com/lutzroeder/netron/releases)，下载最新的netron版本。
+
+2022年5月31日当前最新版本是5.8.2，可以通过如下命令下载：
+```
+$ wget https://github.com/lutzroeder/netron/releases/download/v5.8.2/Netron-Setup-5.8.2.exe
+$ wget https://github.com/lutzroeder/netron/releases/download/v5.8.4/Netron-Setup-5.8.4.exe
+```
+
+## Linux Docker Building Environment in DockerHub
+
+[anaconda3 in dockerhub](https://hub.docker.com/r/snser/anaconda3)
+
+```
+$ docker login
+$ docker pull snser/anaconda3
+$ docker run -itv your_path/Paddle-Lite:/workspace -w /workspace snser/anaconda3 /bin/bash
+$ conda env list
+$ conda activate python3.7
+$ lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_python=ON --python_version=3.7 --with_log=ON --with_exception=ON --with_profile=ON --with_precision_profile=ON --with_static_mkl=ON --with_avx=ON --with_opencl=ON
+```
+
+
 [简体中文](README.md) | English
 
 [![Build Status](https://travis-ci.org/PaddlePaddle/Paddle-Lite.svg?branch=develop&longCache=true&style=flat-square)](https://travis-ci.org/PaddlePaddle/Paddle-Lite)  [![Documentation Status](https://img.shields.io/badge/中文文档-最新-brightgreen.svg)](https://www.paddlepaddle.org.cn/lite)  [![Release](https://img.shields.io/github/release/PaddlePaddle/Paddle-Lite.svg)](https://github.com/PaddlePaddle/Paddle-Lite/releases)  [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)
