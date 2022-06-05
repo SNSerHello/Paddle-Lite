@@ -55,15 +55,15 @@ strace python xxx.py
 ## 如何在Windows下编译运行C++推断程序
 
 ```
-1. cd test
-2. mkdir build
-3. cd build
-4. cmake -DWIN64=1 -G "Visual Studio 15 2017 Win64" ..
-5. set curr_dir=%cd%
-6. "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2017\Visual Studio Tools\VC\x64 Native Tools Command Prompt for VS 2017.lnk"
-7. cd %curr_dir% 
-8. msbuild /p:Configuration=Release test_paddlelite_opencl.vcxproj
-9. cd ..
+01. cd test
+02. mkdir build
+03. cd build
+04. cmake -DWIN64=1 -G "Visual Studio 15 2017 Win64" ..
+05. set curr_dir=%cd%
+06. "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2017\Visual Studio Tools\VC\x64 Native Tools Command Prompt for VS 2017.lnk"
+07. cd %curr_dir% 
+08. msbuild /p:Configuration=Release test_paddlelite_opencl.vcxproj
+09. cd ..
 10. build\Release\test_paddlelite_opencl.exe
 ```
 
@@ -71,19 +71,28 @@ strace python xxx.py
 
 ```
 01. sudo apt install libopencv-dev
-02. cd test
-03. wget http://paddle-inference-dist.bj.bcebos.com/mobilenet_v1.tar.gz
-04. tar xvzf mobilenet_v1.tar.gz
-05. paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --optimize_out mobilenet_v1_opencl --valid_targets opencl
-06. mkdir build
-07. cd build
-08. cmake ..
-09. make
-10. cd ..
-11. python3 test_redis.py
-12. ./build/test_redis
-13. ./build/test_paddlelite_opencl
-14. python3 test_paddlelite_opencl.py
+02. sudo docker login
+03. sudo docker pull redis:latest 
+04. sudo docker run -itd --name transformer -p 6379:6379 redis
+05. sudo apt install redis-tools
+06. redis-cli
+127.0.0.1:6379> ping
+PONG
+127.0.0.1:6379> exit
+07. sudo pip3 install --upgrade redis
+08. cd test
+09. wget http://paddle-inference-dist.bj.bcebos.com/mobilenet_v1.tar.gz
+10. tar xvzf mobilenet_v1.tar.gz
+11. paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --optimize_out mobilenet_v1_opencl --valid_targets opencl
+12. mkdir build
+14. cd build
+15. cmake ..
+16. make
+17. cd ..
+18. python3 test_redis.py
+19. ./build/test_redis
+20. ./build/test_paddlelite_opencl
+21. python3 test_paddlelite_opencl.py
 ```
 
 ## 使用ONNX推断Predict-Lite模型
