@@ -12,7 +12,7 @@ if r.hget("cv", "cat") is None:
             )
             / 255.0
         )
-        .astype(np.float32)
+        .astype(np.float32)[..., ::-1]
         .transpose((2, 0, 1))[np.newaxis, ...]
     )
     if r.hset("cv", "cat", img.tobytes()) == 0:

@@ -70,17 +70,20 @@ strace python xxx.py
 ## 如何在Linux下编译运行C++推断程序
 
 ```
- 1. sudo apt install libopencv-dev
- 2. cd test
- 3. paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --optimize_out mobilenet_v1_opencl --valid_targets opencl
- 4. mkdir build
- 5. cd build
- 6. cmake ..
- 7. make
- 8. cd ..
- 9. ./build/test_paddlelite_opencl
-10. python3 test_redis.py
-11. ./build/test_redis
+01. sudo apt install libopencv-dev
+02. cd test
+03. wget http://paddle-inference-dist.bj.bcebos.com/mobilenet_v1.tar.gz
+04. tar xvzf mobilenet_v1.tar.gz
+05. paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --optimize_out mobilenet_v1_opencl --valid_targets opencl
+06. mkdir build
+07. cd build
+08. cmake ..
+09. make
+10. cd ..
+11. python3 test_redis.py
+12. ./build/test_redis
+13. ./build/test_paddlelite_opencl
+14. python3 test_paddlelite_opencl.py
 ```
 
 ## 使用ONNX推断Predict-Lite模型
