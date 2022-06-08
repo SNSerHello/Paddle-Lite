@@ -15,7 +15,18 @@
 ## 在Linux下，编译Paddle-Lite
 
 ```
-$ lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_python=ON --python_version=3.7 --with_log=ON --with_exception=ON --with_profile=ON --with_precision_profile=ON --with_static_mkl=ON --with_avx=ON --with_opencl=ON
+$ lite/tools/build_linux.sh --arch=x86 \
+	--toolchain=gcc \
+	--with_extra=ON \
+	--with_python=ON \
+	--python_version=3.7 \
+	--with_log=ON \
+	--with_exception=ON \
+	--with_profile=ON \
+	--with_precision_profile=ON \
+	--with_static_mkl=ON \
+	--with_avx=ON \
+	--with_opencl=ON
 ```
 
 ## 通过paddle_lite_opt制作模型优化文件
@@ -26,7 +37,10 @@ $ lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_py
 $ cd test
 $ wget http://paddle-inference-dist.bj.bcebos.com/mobilenet_v1.tar.gz
 $ tar xvzf mobilenet_v1.tar.gz
-$ paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --optimize_out mobilenet_v1_opencl --valid_targets opencl
+$ paddle_lite_opt --model_dir mobilenet_v1 \
+	--optimize_out_type naive_buffer \
+	--optimize_out mobilenet_v1_opencl \
+	--valid_targets opencl
 $ python3 test_paddlelite_opencl.py
 ```
 
@@ -85,7 +99,10 @@ PONG
 08. cd test
 09. wget http://paddle-inference-dist.bj.bcebos.com/mobilenet_v1.tar.gz
 10. tar xvzf mobilenet_v1.tar.gz
-11. paddle_lite_opt --model_dir mobilenet_v1 --optimize_out_type naive_buffer --optimize_out mobilenet_v1_opencl --valid_targets opencl
+11. paddle_lite_opt --model_dir mobilenet_v1 \
+	--optimize_out_type naive_buffer \
+	--optimize_out mobilenet_v1_opencl \
+	--valid_targets opencl
 12. mkdir build
 14. cd build
 15. cmake ..
@@ -102,7 +119,10 @@ PONG
 ```
 $ cd test
 $ pip3 install --upgrade paddle2onnx==0.8.2
-$ paddle2onnx --model_dir mobilenet_v1 --opset_version 9 --save_file mobilenet_v1.onnx --enable_onnx_checker True
+$ paddle2onnx --model_dir mobilenet_v1 \
+	--opset_version 9 \
+	--save_file mobilenet_v1.onnx \
+	--enable_onnx_checker True
 $ pip3 install --upgrade onnxruntime
 $ python3 test_paddlelite_onnx.py
 ```
@@ -127,7 +147,18 @@ $ docker pull snser/anaconda3
 $ docker run -itv your_path/Paddle-Lite:/workspace -w /workspace snser/anaconda3 /bin/bash
 $ conda env list
 $ conda activate python3.7
-$ lite/tools/build_linux.sh --arch=x86 --toolchain=gcc --with_extra=ON --with_python=ON --python_version=3.7 --with_log=ON --with_exception=ON --with_profile=ON --with_precision_profile=ON --with_static_mkl=ON --with_avx=ON --with_opencl=ON
+$ lite/tools/build_linux.sh --arch=x86 \
+	--toolchain=gcc \
+	--with_extra=ON \
+	--with_python=ON \
+	--python_version=3.7 \
+	--with_log=ON \
+	--with_exception=ON \
+	--with_profile=ON \
+	--with_precision_profile=ON \
+	--with_static_mkl=ON \
+	--with_avx=ON \
+	--with_opencl=ON
 ```
 
 
