@@ -136,6 +136,7 @@ $ python3 test_paddlelite_onnx.py
 $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.2/Netron-Setup-5.8.2.exe
 $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.4/Netron-Setup-5.8.4.exe
 $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.5/Netron-Setup-5.8.5.exe
+$ wget https://github.com/lutzroeder/netron/releases/download/v5.8.6/Netron-Setup-5.8.6.exe
 ```
 
 ## Linux Docker Building Environment in DockerHub
