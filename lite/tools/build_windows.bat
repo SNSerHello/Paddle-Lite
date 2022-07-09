@@ -10,6 +10,7 @@ set WITH_LOG=ON
 set WITH_PROFILE=OFF
 set WITH_PRECISION_PROFILE=OFF
 set WITH_TESTING=OFF
+set WITH_BENCHMARK_TEST=OFF
 set BUILD_FOR_CI=OFF
 set BUILD_PLATFORM=x64
 set MSVC_STATIC_CRT=ON
@@ -58,6 +59,8 @@ if /I "%1"=="with_extra" (
     set WITH_STATIC_MKL=ON
 ) else if /I  "%1"=="with_opencl" (
     set WITH_OPENCL=ON
+) else if /I  "%1"=="with_benchmark_test" (
+    set WITH_BENCHMARK_TEST=ON
 ) else if /I  "%1"=="without_avx" (
     set WITH_AVX=OFF
 ) else if /I  "%1"=="with_kunlunxin_xpu" (
@@ -178,6 +181,7 @@ if "%CMAKE_GENERATOR%"=="Ninja" (
             -DLITE_BUILD_EXTRA=%BUILD_EXTRA% ^
             -DLITE_WITH_PYTHON=%WITH_PYTHON% ^
             -DWITH_TESTING=%WITH_TESTING%    ^
+            -DLITE_WITH_BENCHMARK_TEST=%WITH_BENCHMARK_TEST% ^
             -DLITE_WITH_LOG=%WITH_LOG%       ^
             -DWITH_STATIC_MKL=%WITH_STATIC_MKL%  ^
             -DLITE_BUILD_TAILOR=%WITH_STRIP%  ^
