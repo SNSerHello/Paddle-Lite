@@ -10,6 +10,7 @@ $ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile wi
 ```
 **注意**：
 
+* `with_precision_profile`在Windows下有Bugs，如果运行后出现类似`The syntax of the command is incorrect`的错误，则不要加此选项在做查看。
 * paddle_lit_opt无法在windows下直接运行，所以使用`python %CONDA_PREFIX%\Scripts\paddle_lite_opt --help`来获知HOWTO
 * 当前Paddle-Lite仅仅支持python3.5，python3.6与python3.7，其他版本可能存在兼容性问题
 
@@ -17,7 +18,7 @@ $ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile wi
 
 ```
 $ where python
-$ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile with_extra with_static_mkl with_opencl
+$ lite\tools\build_windows.bat use_vs2017 with_profile with_extra with_static_mkl with_opencl
 ```
 
 ## Linux编译
