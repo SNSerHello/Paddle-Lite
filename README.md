@@ -1,18 +1,27 @@
 #  Paddle Lite
 
-## 在Windows下，编译Paddle-Lite
+## Windows编译
+
+### Paddle-Lite
 
 ```
-1. where python
-2. lite\tools\build_windows.bat use_vs2017 with_profile with_extra with_static_mkl with_opencl
+$ where python
+$ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile with_extra with_static_mkl
 ```
 **注意**：
 
-* 在Windows下，with_precision_profile有bugs，暂时不支持，所以编译的时候请不要加入
-* paddle_lit_opt无法在windows下直接运行，所以使用`python your_path\paddle_lite_opt --help`来获知HOWTO
+* paddle_lit_opt无法在windows下直接运行，所以使用`python %CONDA_PREFIX%\Scripts\paddle_lite_opt --help`来获知HOWTO
 * 当前Paddle-Lite仅仅支持python3.5，python3.6与python3.7，其他版本可能存在兼容性问题
 
-## 在Linux下，编译Paddle-Lite
+### Paddle-Lite with OpenCL
+
+```
+$ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile with_extra with_static_mkl with_opencl
+```
+
+## Linux编译
+
+### Paddle-Lite with OpenCL
 
 ```
 $ lite/tools/build_linux.sh --arch=x86 \
@@ -29,7 +38,7 @@ $ lite/tools/build_linux.sh --arch=x86 \
 	--with_opencl=ON
 ```
 
-## 通过paddle_lite_opt制作模型优化文件
+### 通过paddle_lite_opt制作模型优化文件
 
 以mobilenet v1模型为样例
 
