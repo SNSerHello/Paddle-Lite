@@ -147,6 +147,8 @@ $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.2/Netron-Setu
 $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.4/Netron-Setup-5.8.4.exe
 $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.5/Netron-Setup-5.8.5.exe
 $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.6/Netron-Setup-5.8.6.exe
+$ wget https://github.com/lutzroeder/netron/releases/download/v5.9.1/Netron-Setup-5.9.1.exe
+$ wget https://github.com/lutzroeder/netron/releases/download/v5.9.2/Netron-Setup-5.9.2.exe
 ```
 
 ## Linux Docker Building Environment in DockerHub
