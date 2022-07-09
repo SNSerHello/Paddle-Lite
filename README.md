@@ -16,6 +16,7 @@ $ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile wi
 ### Paddle-Lite with OpenCL
 
 ```
+$ where python
 $ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile with_extra with_static_mkl with_opencl
 ```
 
