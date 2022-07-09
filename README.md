@@ -59,8 +59,16 @@ $ python3 test_paddlelite_opencl.py
 
 ### Windows
 
+#### 用户级环境变量
+
 ```
 setx GLOG_v 5
+```
+
+#### 当前console环境变量
+
+```
+set GLOG_v=5
 ```
 
 ### Linux
