@@ -4,7 +4,7 @@
 
 ```
 1. where python
-2. lite\tools\build_windows.bat with_profile with_extra with_static_mkl with_opencl use_vs2017
+2. lite\tools\build_windows.bat use_vs2017 with_profile with_extra with_static_mkl with_opencl
 ```
 **注意**：
 
