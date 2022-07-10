@@ -664,14 +664,13 @@ class PrecisionProfiler {
 
  private:
 #ifdef LITE_WITH_ANDROID
-  std::string log_dir_{"/storage/emulated/0/PaddleLite_" + get_date_str() +
-                       "/"};
+  std::string log_dir_{"/storage/emulated/0/PaddleLite_" + get_date_str()};
 #elif defined(_MSC_VER)
   std::string log_dir_{"PaddleLite_" + get_date_str()};
 #else
-  std::string log_dir_{"/tmp/PaddleLite_" + get_date_str() + "/"};
+  std::string log_dir_{"/tmp/PaddleLite_" + get_date_str()};
 #endif
-  std::string summary_log_dir_{log_dir_ + "precision_summary.log"};
+  std::string summary_log_dir_{log_dir_ + "/precision_summary.log"};
   std::map<std::string, size_t> out_tensor_names_map;
   bool write_result_to_file_{false};
 };
