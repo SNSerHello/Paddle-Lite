@@ -156,7 +156,7 @@ copy "%root_dir%\lite\tools\debug\analysis_tool.py" "%DEBUG_TOOL_PATH_PREFIX%\"
 cd "%build_directory%"
 
 if "%CMAKE_GENERATOR%"=="Ninja" (
-    pip install ninja
+    pip install --upgrade ninja
     if %errorlevel% NEQ 0 (
         echo pip install ninja failed!
         exit /b 7
@@ -164,29 +164,31 @@ if "%CMAKE_GENERATOR%"=="Ninja" (
     goto ninja_build
 )
 
-    cmake %root_dir%  -G "%CMAKE_GENERATOR%" -A %BUILD_PLATFORM% ^
-            -DMSVC_STATIC_CRT=%MSVC_STATIC_CRT% ^
-            -DWITH_MKL=ON      ^
-            -DWITH_MKLDNN=OFF   ^
-            -DWITH_AVX=%WITH_AVX% ^
-            -DCMAKE_BUILD_TYPE=%BUILD_TYPE% ^
-            -DTHIRD_PARTY_BUILD_TYPE=Release ^
-            -DLITE_WITH_X86=ON  ^
-            -DLITE_WITH_PROFILE=%WITH_PROFILE% ^
-            -DLITE_WITH_PRECISION_PROFILE=%WITH_PRECISION_PROFILE% ^
-            -DLITE_WITH_XPU=%WITH_KUNLUNXIN_XPU% ^
-            -DXPU_SDK_ROOT=%KUNLUNXIN_XPU_SDK_ROOT%  ^
-            -DLITE_WITH_ARM=OFF ^
-            -DLITE_WITH_OPENCL=%WITH_OPENCL% ^
-            -DLITE_BUILD_EXTRA=%BUILD_EXTRA% ^
-            -DLITE_WITH_PYTHON=%WITH_PYTHON% ^
-            -DWITH_TESTING=%WITH_TESTING%    ^
-            -DLITE_WITH_BENCHMARK_TEST=%WITH_BENCHMARK_TEST% ^
-            -DLITE_WITH_LOG=%WITH_LOG%       ^
-            -DWITH_STATIC_MKL=%WITH_STATIC_MKL%  ^
-            -DLITE_BUILD_TAILOR=%WITH_STRIP%  ^
-            -DLITE_OPTMODEL_DIR=%OPTMODEL_DIR%  ^
-            -DPYTHON_EXECUTABLE="%python_path%"
+cmake %root_dir%  -G "%CMAKE_GENERATOR%" -A %BUILD_PLATFORM% ^
+        -DMSVC_STATIC_CRT=%MSVC_STATIC_CRT% ^
+        -DWITH_MKL=ON      ^
+        -DWITH_MKLDNN=OFF   ^
+        -DWITH_AVX=%WITH_AVX% ^
+        -DCMAKE_BUILD_TYPE=%BUILD_TYPE% ^
+        -DTHIRD_PARTY_BUILD_TYPE=Release ^
+        -DLITE_WITH_X86=ON  ^
+        -DLITE_WITH_PROFILE=%WITH_PROFILE% ^
+        -DLITE_WITH_PRECISION_PROFILE=%WITH_PRECISION_PROFILE% ^
+        -DWITH_LITE=ON ^
+        -DLITE_WITH_XPU=%WITH_KUNLUNXIN_XPU% ^
+        -DXPU_SDK_ROOT=%KUNLUNXIN_XPU_SDK_ROOT%  ^
+        -DLITE_WITH_LIGHT_WEIGHT_FRAMEWORK=OFF ^
+        -DLITE_WITH_ARM=OFF ^
+        -DLITE_WITH_OPENCL=%WITH_OPENCL% ^
+        -DLITE_BUILD_EXTRA=%BUILD_EXTRA% ^
+        -DLITE_WITH_PYTHON=%WITH_PYTHON% ^
+        -DWITH_TESTING=%WITH_TESTING%    ^
+        -DLITE_WITH_BENCHMARK_TEST=%WITH_BENCHMARK_TEST% ^
+        -DLITE_WITH_LOG=%WITH_LOG%       ^
+        -DWITH_STATIC_MKL=%WITH_STATIC_MKL%  ^
+        -DLITE_BUILD_TAILOR=%WITH_STRIP%  ^
+        -DLITE_OPTMODEL_DIR=%OPTMODEL_DIR%  ^
+        -DPYTHON_EXECUTABLE="%python_path%"
 
 if "%BUILD_FOR_CI%"=="ON" (
     call "%vcvarsall_dir%" amd64
@@ -301,23 +303,24 @@ IF NOT EXIST "%vcvarsall_dir%" (
 goto:eof
 
 :set_python_path
-set python_path=C:\Python35\python.exe
+set python_path=%CONDA_PREFIX%\python.exe
 IF NOT EXIST "%python_path%" (
+    echo "%python_path%"
     goto input_python_path
 )
-SET /P answer="We checked that %python_path% exists. Using this python path[yes/no]? Type yes will use the python path, while type no will let you input your prefer python path:"
+SET /P answer="Use %python_path% for paddlelite [yes/no]?"
 set tmp_var=%answer%
 call:remove_space
 if "%tmp_var%"=="yes" (
     goto:eof
 ) else (
 :input_python_path
-    SET /P python_path="Please input the path of python.exe, such as C:\Python35\python.exe, C:\Python35\python3.exe  ======>"
+    SET /P python_path="Please input the path of python.exe, from %python_path% to "
     set tmp_var=%python_path%
     call:remove_space
     set python_path=%tmp_var%
     if "%python_path%"=="" (
-        set python_path=python.exe
+        set python_path=%python_path%
     ) else (
         IF NOT EXIST "%python_path%" (
             echo "------------%python_path% not exist---------------"
