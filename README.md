@@ -4,7 +4,7 @@
 
 ### Paddle-Lite
 
-```
+```bash
 $ where python
 $ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile with_extra with_static_mkl
 ```
@@ -15,7 +15,7 @@ $ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile wi
 
 ### Paddle-Lite with OpenCL
 
-```
+```bash
 $ where python
 $ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile with_extra with_static_mkl with_opencl
 ```
@@ -24,7 +24,7 @@ $ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile wi
 
 ### Paddle-Lite with OpenCL
 
-```
+```bash
 $ lite/tools/build_linux.sh --arch=x86 \
 	--toolchain=gcc \
 	--with_extra=ON \
@@ -43,7 +43,9 @@ $ lite/tools/build_linux.sh --arch=x86 \
 
 以mobilenet v1模型为样例
 
-```
+#### opencl模型优化文件
+
+```bash
 $ cd test
 $ wget http://paddle-inference-dist.bj.bcebos.com/mobilenet_v1.tar.gz
 $ tar xvzf mobilenet_v1.tar.gz
@@ -52,6 +54,19 @@ $ paddle_lite_opt --model_dir mobilenet_v1 \
 	--optimize_out mobilenet_v1_opencl \
 	--valid_targets opencl
 $ python3 test_paddlelite_opencl.py
+```
+
+#### x86模型优化文件
+
+```bash
+$ cd test
+$ wget http://paddle-inference-dist.bj.bcebos.com/mobilenet_v1.tar.gz
+$ tar xvzf mobilenet_v1.tar.gz
+$ paddle_lite_opt --model_dir mobilenet_v1 \
+	--optimize_out_type naive_buffer \
+	--optimize_out mobilenet_v1 \
+	--valid_targets x86
+$ python3 test_paddlelite.py
 ```
 
 ## 如何查看LOG信息
@@ -66,13 +81,13 @@ setx GLOG_v 5
 
 #### 当前console环境变量
 
-```
+```bash
 set GLOG_v=5
 ```
 
 ### Linux
 
-```
+```bash
 export GLOG_v=5
 ```
 
@@ -80,7 +95,7 @@ export GLOG_v=5
 
 ### Linux
 
-```
+```bash
 strace python xxx.py
 ```
 
@@ -134,7 +149,7 @@ PONG
 
 ## 使用ONNX推断Predict-Lite模型
 
-```
+```bash
 $ cd test
 $ pip3 install --upgrade paddle2onnx==0.8.2
 $ paddle2onnx --model_dir mobilenet_v1 \
@@ -150,7 +165,7 @@ $ python3 test_paddlelite_onnx.py
 访问[Netron Release](https://github.com/lutzroeder/netron/releases)，下载最新的netron版本。
 
 2022年5月31日当前最新版本是5.8.2，可以通过如下命令下载：
-```
+```bash
 $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.2/Netron-Setup-5.8.2.exe
 $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.4/Netron-Setup-5.8.4.exe
 $ wget https://github.com/lutzroeder/netron/releases/download/v5.8.5/Netron-Setup-5.8.5.exe
@@ -163,7 +178,7 @@ $ wget https://github.com/lutzroeder/netron/releases/download/v5.9.2/Netron-Setu
 
 [anaconda3 in dockerhub](https://hub.docker.com/r/snser/anaconda3)
 
-```
+```bash
 $ docker login
 $ docker pull snser/anaconda3
 $ docker run --name anaconda3 -itv your_path/Paddle-Lite:/workspace -w /workspace -d snser/anaconda3 /bin/bash
