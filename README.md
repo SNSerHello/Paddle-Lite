@@ -180,7 +180,7 @@ $ wget https://github.com/lutzroeder/netron/releases/download/v5.9.2/Netron-Setu
 
 ```bash
 $ docker login
-$ docker pull snser/anaconda3
+$ docker pull snser/anaconda3:latest
 $ docker run --name anaconda3 -itv your_path/Paddle-Lite:/workspace -w /workspace -d snser/anaconda3 /bin/bash
 $ docker exec -it anaconda3 /bin/bash
 $ conda env list
@@ -198,6 +198,12 @@ $ lite/tools/build_linux.sh --arch=x86 \
 	--with_avx=ON \
 	--with_opencl=ON
 ```
+
+## 参考
+
+- [snser/anaconda3](https://hub.docker.com/repository/docker/snser/anaconda3)
+- [py37-paddle](https://github.com/SNSerHello/MyNotes/tree/main/paddle)
+
 
 
 [English](README_en.md) | 简体中文
