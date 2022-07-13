@@ -39,6 +39,24 @@ $ lite/tools/build_linux.sh --arch=x86 \
 	--with_opencl=ON
 ```
 
+### 发布版本OpenCL版本
+
+```bash
+$ lite/tools/build_linux.sh --arch=x86 \
+	--toolchain=gcc \
+	--with_extra=ON \
+	--with_python=ON \
+	--python_version=3.7 \
+	--with_log=ON \
+	--with_exception=ON \
+	--with_profile=ON \
+	--with_precision_profile=ON \
+	--with_static_mkl=ON \
+	--with_avx=ON \
+	--with_opencl=ON \
+	full_publish
+```
+
 ### 通过paddle_lite_opt制作模型优化文件
 
 以mobilenet v1模型为样例
