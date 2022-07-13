@@ -221,6 +221,7 @@ $ lite/tools/build_linux.sh --arch=x86 \
 
 - [snser/anaconda3](https://hub.docker.com/repository/docker/snser/anaconda3)
 - [py37-paddle](https://github.com/SNSerHello/MyNotes/tree/main/paddle)
+- [release/v2.3 源码编译](https://paddle-lite.readthedocs.io/zh/latest/source_compile/v2.3_compile.html)
 
 
 
