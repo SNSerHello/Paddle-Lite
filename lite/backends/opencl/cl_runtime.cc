@@ -489,15 +489,14 @@ std::string CLRuntime::GetSN(const std::string options) {
   STL::stringstream sn_ss;
 
   const std::string aarch =
-#if defined(__aarch64__)
+#if defined(_WIN64)
+    "win64";
+#elif defined(_WIN32)
+    "win32";
+#elif defined(__aarch64__)
       "android_armv8";
 #else
       "android_armv7";
-#endif
-#if defined(_WIN64)
-  "win64";
-#elif defined(_WIN32)
-  "win32";
 #endif
 
   const std::string aarch_info = aarch + "; ";
