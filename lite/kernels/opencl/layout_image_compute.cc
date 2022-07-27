@@ -175,7 +175,7 @@ class LayoutComputeBufferChwToImageDefault
  private:
   std::string time_stamp_{GetTimeStamp()};
   std::string kernel_func_name_{"buffer_to_image2d"};
-  std::string build_options_{""};
+  std::string build_options_{" -DCL_DTYPE_float"};
 };
 
 // [ImageDefault] -> [NCHW]
@@ -314,7 +314,7 @@ class LayoutComputeImageDefaultToBufferChw
  private:
   std::string time_stamp_{GetTimeStamp()};
   std::string kernel_func_name_{"image2d_to_buffer"};
-  std::string build_options_{""};
+  std::string build_options_{" -DCL_DTYPE_float"};
 };
 
 // [NCHW] -> [ImageDW]
@@ -430,7 +430,7 @@ class LayoutComputeBufferChwToImage2DNw
   std::string time_stamp_{GetTimeStamp()};
 
   std::string kernel_func_name_{"buffer_to_image2d_nw"};
-  std::string build_options_{""};
+  std::string build_options_{" -DCL_DTYPE_float"};
 };
 
 // [ImageDefault] -> [ImageFolder]
@@ -770,7 +770,7 @@ class LayoutComputeImageFolderToBufferChw
  private:
   std::string time_stamp_{GetTimeStamp()};
   std::string kernel_func_name_{"image2d_folder_to_buffer"};
-  std::string build_options_{""};
+  std::string build_options_{" -DCL_DTYPE_float"};
 };
 
 // [NCHW] -> [ImageFolder]
@@ -903,7 +903,7 @@ class LayoutComputeBufferChwToImageFolder
  private:
   std::string time_stamp_{GetTimeStamp()};
   std::string kernel_func_name_{"buffer_to_image2d_folder"};
-  std::string build_options_{""};
+  std::string build_options_{" -DCL_DTYPE_float"};
   cl::NDRange gws_;
 };
 
