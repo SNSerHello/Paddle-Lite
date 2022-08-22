@@ -47,7 +47,7 @@ int main(void) {
     img = img(cv::Range(y_offset, y_offset + img_size.width),
               cv::Range(0, img_size.width));
   }
-  cv::resize(img, img, cv::Size(224, 224), 0, 0, cv::INTER_LINEAR);
+  cv::resize(img, img, cv::Size(224, 224), 0, 0, cv::INTER_AREA);
   // HWC: uint8 -> float32
   img.convertTo(img, CV_32FC3, 1.0 / 255.0, 0);
   // BGR -> RGB
