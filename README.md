@@ -27,7 +27,7 @@ $ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile wi
 使用[py37-paddle-dev](https://github.com/SNSerHello/MyNotes/blob/main/paddle/py37-paddle-dev.yaml)来搭建paddlelite编译环境
 
 ```bash
-conda env create --file py37-paddle-dev.yaml
+$ conda env create --file py37-paddle-dev.yaml
 ```
 
 ### Paddle-Lite with OpenCL
