@@ -24,7 +24,45 @@ $ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile wi
 
 ## 搭建paddlelite编译环境
 
-使用[py37-paddle-dev](https://github.com/SNSerHello/MyNotes/blob/main/paddle/py37-paddle-dev.yaml)来搭建paddlelite编译环境
+使用`py37-paddle-dev.yaml`来搭建paddlelite编译环境
+
+```yaml
+name: py37-paddle-dev
+
+# The conda channels to lookup the dependencies
+channels:
+  - anaconda
+  - conda-forge
+
+# The packages to install to the environment
+dependencies:
+  - conda-build
+  - git
+  - llvmdev==10
+  - numpy
+  - pytest
+  - cython
+  - cmake
+  - bzip2
+  - make
+  - scipy
+  - pillow
+  - cudatoolkit-dev
+  - cudnn
+  - nccl=2.14
+  - ipython
+  - pip
+  - python=3.7
+  - black
+  - opencv
+  - matplotlib
+  - pandas
+  - mkl-devel
+  - intel-openmp
+  - protobuf
+```
+
+**搭建环境**
 
 ```bash
 $ conda env create --file py37-paddle-dev.yaml
