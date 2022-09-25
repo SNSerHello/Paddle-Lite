@@ -6,7 +6,12 @@
 
 ```bash
 $ where python
-$ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile with_extra with_static_mkl
+$ lite\tools\build_windows.bat ^
+  use_vs2017 ^
+  with_profile ^
+  with_precision_profile ^
+  with_extra ^
+  with_static_mkl
 ```
 **注意**：
 
@@ -17,7 +22,13 @@ $ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile wi
 
 ```bash
 $ where python
-$ lite\tools\build_windows.bat use_vs2017 with_profile with_precision_profile with_extra with_static_mkl with_opencl
+$ lite\tools\build_windows.bat ^
+  use_vs2017 ^
+  with_profile ^
+  with_precision_profile ^
+  with_extra ^
+  with_static_mkl ^
+  with_opencl
 ```
 
 ## 在Linux编译
