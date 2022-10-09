@@ -10,8 +10,7 @@ $ lite\tools\build_windows.bat ^
   use_vs2017 ^
   with_profile ^
   with_precision_profile ^
-  with_extra ^
-  with_static_mkl
+  with_extra
 ```
 **注意**：
 
@@ -27,7 +26,6 @@ $ lite\tools\build_windows.bat ^
   with_profile ^
   with_precision_profile ^
   with_extra ^
-  with_static_mkl ^
   with_opencl
 ```
 
