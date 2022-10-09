@@ -91,7 +91,7 @@ $ lite/tools/build_linux.sh --arch=x86 \
 	--with_exception=ON \
 	--with_profile=ON \
 	--with_precision_profile=ON \
-	--with_static_mkl=ON \
+	--with_static_mkl=OFF \
 	--with_avx=ON \
 	--with_opencl=ON
 ```
@@ -108,7 +108,7 @@ $ lite/tools/build_linux.sh --arch=x86 \
 	--with_exception=ON \
 	--with_profile=ON \
 	--with_precision_profile=ON \
-	--with_static_mkl=ON \
+	--with_static_mkl=OFF \
 	--with_avx=ON \
 	--with_opencl=ON \
 	full_publish
@@ -245,8 +245,6 @@ $ wget https://github.com/lutzroeder/netron/releases/download/v6.0.9/Netron-Setu
 ```
 
 **source**: https://github.com/lutzroeder/netron/releases
-
-
 
 ## Linux Docker Building Environment in DockerHub
 
