@@ -10,8 +10,7 @@ $ lite\tools\build_windows.bat ^
   use_vs2017 ^
   with_profile ^
   with_precision_profile ^
-  with_extra ^
-  with_static_mkl
+  with_extra
 ```
 **注意**：
 
@@ -27,7 +26,6 @@ $ lite\tools\build_windows.bat ^
   with_profile ^
   with_precision_profile ^
   with_extra ^
-  with_static_mkl ^
   with_opencl
 ```
 
@@ -91,7 +89,7 @@ $ lite/tools/build_linux.sh --arch=x86 \
 	--with_exception=ON \
 	--with_profile=ON \
 	--with_precision_profile=ON \
-	--with_static_mkl=ON \
+	--with_static_mkl=OFF \
 	--with_avx=ON \
 	--with_opencl=ON
 ```
@@ -108,7 +106,7 @@ $ lite/tools/build_linux.sh --arch=x86 \
 	--with_exception=ON \
 	--with_profile=ON \
 	--with_precision_profile=ON \
-	--with_static_mkl=ON \
+	--with_static_mkl=OFF \
 	--with_avx=ON \
 	--with_opencl=ON \
 	full_publish
@@ -241,13 +239,10 @@ $ python3 test_paddlelite_onnx.py
 
 2022年5月31日当前最新版本是5.8.2，可以通过如下命令下载：
 ```bash
-$ wget https://github.com/lutzroeder/netron/releases/download/v5.8.2/Netron-Setup-5.8.2.exe
-$ wget https://github.com/lutzroeder/netron/releases/download/v5.8.4/Netron-Setup-5.8.4.exe
-$ wget https://github.com/lutzroeder/netron/releases/download/v5.8.5/Netron-Setup-5.8.5.exe
-$ wget https://github.com/lutzroeder/netron/releases/download/v5.8.6/Netron-Setup-5.8.6.exe
-$ wget https://github.com/lutzroeder/netron/releases/download/v5.9.1/Netron-Setup-5.9.1.exe
-$ wget https://github.com/lutzroeder/netron/releases/download/v5.9.2/Netron-Setup-5.9.2.exe
+$ wget https://github.com/lutzroeder/netron/releases/download/v6.0.9/Netron-Setup-6.0.9.exe
 ```
+
+**source**: https://github.com/lutzroeder/netron/releases
 
 ## Linux Docker Building Environment in DockerHub
 

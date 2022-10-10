@@ -137,3 +137,7 @@ test/tmp
 *.onnx
 *.whl
 *.tgz
+
+
+py37.build.lite.linux.x86.gcc.opencl/*
+py38.build.lite.linux.x86.gcc.opencl/*
