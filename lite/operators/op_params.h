@@ -667,6 +667,12 @@ struct QuantizeLinearParam : ParamBase {
   int bit_length;
 };
 
+struct QuantizeLogParam : ParamBase {
+  const lite::Tensor* X{};
+  const lite::Tensor* Dict{};
+  lite::Tensor* Out{};
+};
+
 /// ----------------------- sgd operators ----------------------
 struct SGDParam : ParamBase {
   int dtype{static_cast<int>(VarDescAPI::VarDataType::FP32)};
@@ -2312,6 +2318,16 @@ struct SetValueParam : ParamBase {
   std::vector<double> fp64_values{};
   std::vector<float> fp16_values{};
   std::vector<int64_t> shape{};
+};
+
+struct ShareDataParam : ParamBase {
+  const lite::Tensor* X{};
+  lite::Tensor* Out{};
+};
+
+struct RoundParam : ParamBase {
+  const lite::Tensor* X{};
+  lite::Tensor* Out{};
 };
 
 }  // namespace operators
