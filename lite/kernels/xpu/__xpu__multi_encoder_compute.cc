@@ -196,6 +196,8 @@ void XPUMultiEncoderCompute::PrepareForRun() {
   // prepare act_type
   if (param.act_type == "gelu") {
     qkv_act = xdnn::Activation_t::GELU;
+  } else if (param.act_type == "__xpu__quick_gelu") {
+    qkv_act = xdnn::Activation_t::QUICK_GELU;
   } else if (param.act_type != "relu") {
     CHECK(false) << "Invalid QKV Activation Type: " << param.act_type;
   }
@@ -306,8 +308,11 @@ void XPUMultiEncoderCompute::run_encoder(const T* in, T* out) {
     std::vector<int64_t> mask_shape = param.mask->dims().Vectorize();
     std::vector<int> encoder_mask_shape =
         std::vector<int>(mask_shape.begin(), mask_shape.end());
-    CHECK_EQ(param.ffn_hidden_dim_scale, 4)
-        << "xpu don't support ffn_hidden_dim_scale!=4 when no vsl";
+    // xpu1 don't support ffn_hidden_dim_scale!=4 when no vsl
+    if (ctx.GetRawContext()->dev().type() == xdnn::kXPU1) {
+      CHECK_EQ(param.ffn_hidden_dim_scale, 4)
+          << "xpu don't support ffn_hidden_dim_scale!=4 when no vsl";
+    }
     xdnn::QKVAttnParam qkv_attn_param(batch,
                                       max_seqlen,
                                       param.head_num,
@@ -326,6 +331,7 @@ void XPUMultiEncoderCompute::run_encoder(const T* in, T* out) {
       qkv_attn_param.relative_pos.assign(roformer_embedding_.begin(),
                                          roformer_embedding_.end());
     }
+    qkv_attn_param.scale_of_hidden_units = param.ffn_hidden_dim_scale;
     int r = xdnn::transformer_encoder<T, TW, TGEMM>(
         ctx.GetRawContext(),
         in,

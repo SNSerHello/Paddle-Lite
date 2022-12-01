@@ -404,7 +404,7 @@ typedef struct Device {
 - 添加用户说明文档，示例：华为昇腾 NPU 的[文档源码](https://github.com/PaddlePaddle/Paddle-Lite/blob/000148b34f7cbcdf19802501dc1ddef9f9c83490/docs/demo_guides/huawei_ascend_npu.md?plain=1#L3)。
 
 - 提交代码和文档：当代码和文档都已经准备好了后，就可以向 Paddle Lite 的 [github 代码仓库](https://github.com/PaddlePaddle/Paddle-Lite) 发起 Pull request 了，但只有飞桨研发同学完成 code reivew 后方可合入主线，具体方法如下：
-  - 参考[Docker 统一环境搭建](../source_compile/docker_env)准备 Docker 开发环境（注意：必须使用 Paddle Lite Docker 容器环境，因为代码提交时将使用 git pre-commit hooks 进行代码风格检查，而它使用的 clang-format 被严格限制在 3.8 版本）
+  - 参考[Docker 统一编译环境搭建](../source_compile/docker_env)准备 Docker 开发环境（注意：必须使用 Paddle Lite Docker 容器环境，因为代码提交时将使用 git pre-commit hooks 进行代码风格检查，而它使用的 clang-format 被严格限制在 3.8 版本）
   - 注册 [github](https://www.github.com/) 账户，将 [Paddle Lite](https://github.com/PaddlePaddle/Paddle-Lite) 代码仓库 Fork 到自己的账户.
   - 将自己 github 账户的 Paddle Lite 仓库克隆到本地。
     ```
@@ -1102,6 +1102,14 @@ typedef struct Device {
 
       W_out = (W_in - 1) * stride_width - padding_width_left - padding_width_right + (dilation_width * (filter_width - 1) + 1)) + 1 + output_padding_width
 
+- NNADAPTER_COS
+
+  逐元素取余弦值： `output` = cos(`input`) 。
+  - 输入：
+    - 0 ： input ，输入操作数，类型： NNADAPTER_FLOAT32 、 NNADAPTER_QUANT_INT8_SYMM_PER_LAYER 。
+  - 输出：
+    - 0 ： output ，输出操作数，与输入操作数 `input` 的形状和类型相同。
+
 - NNADAPTER_CUM_SUM
 
   沿给定 `axis` 轴计算累加和。
@@ -1221,6 +1229,16 @@ typedef struct Device {
     - 0 ： input ，输入操作数，类型： NNADAPTER_FLOAT32 、 NNADAPTER_QUANT_INT8_SYMM_PER_LAYER 。
   - 输出：
     - 0 ： output ，输出操作数，与输入操作数 `input` 的形状和类型相同。
+
+- NNADAPTER_FLOOR_DIV
+
+  逐元素相除并向下取整： `output` = floor (`input0` / `input1`) ，广播规则与 Numpy https://numpy.org/doc/stable/user/basics.broadcasting.html 相同。
+  - 输入：
+    - 0 ： input0 ，输入操作数 0 ，类型： NNADAPTER_FLOAT32 、NNADAPTER_QUANT_INT8_SYMM_PER_LAYER 。
+    - 1 ： input1 ，输入操作数 1 ，类型与输入操作数 `input0` 相同。
+    - 2 ： fuse_code ，融合的激活函数类型，形状： [1] ，类型： NNADAPTER_INT32 ，取值： NNAdapterFuseCode 类型的任意值， NNADAPTER_FUSED_NONE 、 NNADAPTER_FUSED_RELU 、 NNADAPTER_FUSED_RELU1 、 NNADAPTER_FUSED_RELU6 。
+  - 输出：
+    - 0 ： output ，输出操作数，形状：由输入操作数 `input0` 和  `input1` 广播后的形状决定，类型与输入操作数 `input0` 和 `input1` 相同。
 
 - NNADAPTER_FULLY_CONNECTED
 
@@ -1673,6 +1691,14 @@ typedef struct Device {
 - NNADAPTER_SIGMOID
 
   逐元素计算 sigmoid 激活值： `output` = 1 / (1 + exp(-`input`)) 。
+  - 输入：
+    - 0 ： input ，输入操作数，类型： NNADAPTER_FLOAT32 、 NNADAPTER_QUANT_INT8_SYMM_PER_LAYER 。
+  - 输出：
+    - 0 ： output ，输出操作数，与输入操作数 `input` 的形状和类型相同。
+
+- NNADAPTER_SIN
+
+  逐元素取正弦值： `output` = sin(`input`) 。
   - 输入：
     - 0 ： input ，输入操作数，类型： NNADAPTER_FLOAT32 、 NNADAPTER_QUANT_INT8_SYMM_PER_LAYER 。
   - 输出：

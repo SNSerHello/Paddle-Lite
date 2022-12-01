@@ -291,7 +291,7 @@ Paddle Lite 是一个高性能、轻量级、灵活性强且易于扩展的深�
 
 **一. 准备模型**
 
-Paddle Lite 框架直接支持模型结构为 [PaddlePaddle](https://github.com/PaddlePaddle/Paddle) 深度学习框架产出的模型格式。目前 PaddlePaddle 用于推理的模型是通过 [save_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/save_inference_model_cn.html#save-inference-model) 这个 API 保存下来的。
+Paddle Lite 框架直接支持模型结构为 [PaddlePaddle](https://github.com/PaddlePaddle/Paddle) 深度学习框架产出的模型格式。目前 PaddlePaddle 用于推理的模型是通过 [save_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/save_inference_model_cn.html#save-inference-model) 这个 API 保存下来的。
 如果您手中的模型是由诸如 Caffe、Tensorflow、PyTorch 等框架产出的，那么您可以使用 [X2Paddle](https://github.com/PaddlePaddle/X2Paddle) 工具将模型转换为 PaddlePaddle 格式。
 
 **二. 模型优化**
@@ -303,7 +303,7 @@ Paddle Lite 框架拥有优秀的加速、优化策略及实现，包含量化�
 
 Paddle Lite 提供了 Android/iOS/x86/macOS 平台的官方 Release 预测库下载，我们优先推荐您直接下载 [Paddle Lite 预编译库](https://www.paddlepaddle.org.cn/lite/develop/quick_start/release_lib.html)，或者从 Release notes 处获取最新的[预编译编译库](https://github.com/PaddlePaddle/Paddle-Lite/releases)。
 
-Paddle Lite 已支持多种环境下的源码编译，为了避免复杂、繁琐的环境搭建过程，我们建议您使用 [Docker 开发环境](https://www.paddlepaddle.org.cn/lite/develop/source_compile/docker_env.html) 进行编译。当然，您也可以根据宿主机和目标设备的 CPU 架构和操作系统，在[源码编译方法](https://www.paddlepaddle.org.cn/lite/develop/source_compile/compile_env.html)中找到相应的环境搭建及编译指南，自行完成编译环境的搭建。
+Paddle Lite 已支持多种环境下的源码编译，为了避免复杂、繁琐的环境搭建过程，我们建议您使用 [Docker 统一编译环境搭建](https://www.paddlepaddle.org.cn/lite/develop/source_compile/docker_env.html) 进行编译。当然，您也可以根据宿主机和目标设备的 CPU 架构和操作系统，在[源码编译](https://www.paddlepaddle.org.cn/lite/develop/source_compile/compile_env.html)中找到相应的环境搭建及编译指南，自行完成编译环境的搭建。
 
 **四. 预测示例**
 
