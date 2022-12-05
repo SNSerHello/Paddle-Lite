@@ -1,4 +1,4 @@
-// Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
+// Copyright (c) 2022 PaddlePaddle Authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,25 +13,20 @@
 // limitations under the License.
 
 #pragma once
-
 #include "lite/core/kernel.h"
 
 namespace paddle {
 namespace lite {
 namespace kernels {
 namespace xpu {
-template <typename TGEMM,
-          typename TW,
-          typename DX,
-          typename DY,
-          PrecisionType PType>
-class MatMulCompute : public KernelLite<TARGET(kXPU), PType> {
+
+template <typename T, PrecisionType PType>
+class StridedSliceCompute
+    : public KernelLite<TARGET(kXPU), PType, DATALAYOUT(kNCHW)> {
  public:
-  using param_t = operators::MatMulParam;
+  void Run() override;
 
-  virtual void Run();
-
-  virtual ~MatMulCompute() = default;
+  virtual ~StridedSliceCompute() = default;
 };
 
 }  // namespace xpu

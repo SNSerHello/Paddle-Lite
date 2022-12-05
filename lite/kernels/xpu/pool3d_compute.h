@@ -1,4 +1,4 @@
-// Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
+// Copyright (c) 2022 PaddlePaddle Authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,18 +20,14 @@ namespace paddle {
 namespace lite {
 namespace kernels {
 namespace xpu {
-template <typename TGEMM,
-          typename TW,
-          typename DX,
-          typename DY,
-          PrecisionType PType>
-class MatMulCompute : public KernelLite<TARGET(kXPU), PType> {
+template <typename InType, PrecisionType PType>
+class Pool3DCompute : public KernelLite<TARGET(kXPU), PType> {
  public:
-  using param_t = operators::MatMulParam;
+  using param_t = operators::PoolParam;
 
   virtual void Run();
 
-  virtual ~MatMulCompute() = default;
+  virtual ~Pool3DCompute() = default;
 };
 
 }  // namespace xpu

@@ -20,18 +20,15 @@ namespace paddle {
 namespace lite {
 namespace kernels {
 namespace xpu {
-template <typename TGEMM,
-          typename TW,
-          typename DX,
-          typename DY,
-          PrecisionType PType>
-class MatMulCompute : public KernelLite<TARGET(kXPU), PType> {
+
+template <typename InType, PrecisionType PType>
+class GroupNormCompute : public KernelLite<TARGET(kXPU), PType> {
  public:
-  using param_t = operators::MatMulParam;
+  using param_t = operators::GroupNormParam;
 
   virtual void Run();
 
-  virtual ~MatMulCompute() = default;
+  virtual ~GroupNormCompute() = default;
 };
 
 }  // namespace xpu
