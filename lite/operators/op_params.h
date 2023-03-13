@@ -2465,6 +2465,14 @@ struct RollParam : ParamBase {
   std::vector<int64_t> axis{};
 };
 
+struct BitwiseParam : ParamBase {
+  const lite::Tensor* X{nullptr};
+  const lite::Tensor* Y{nullptr};
+  lite::Tensor* Out{nullptr};
+  std::string bitwise_type_;
+  int axis_{-1};
+};
+
 struct SetValueParam : ParamBase {
   const lite::Tensor* Input{};
   const lite::Tensor* ValueTensor{};
@@ -2623,6 +2631,15 @@ struct TemporalShiftParam : ParamBase {
   int seg_num;
   float shift_ratio{0.25f};
   std::string data_format{"NCHW"};
+};
+
+struct ViterbiDecodeParam : ParamBase {
+  const lite::Tensor* input{};
+  const lite::Tensor* length{};
+  const lite::Tensor* transition{};
+  lite::Tensor* path{};
+  lite::Tensor* scores{};
+  bool include_bos_eos_tag{};
 };
 
 }  // namespace operators

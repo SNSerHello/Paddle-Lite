@@ -74,6 +74,7 @@ add_operator(group_norm_op extra SRCS group_norm_op.cc)
 add_operator(norm_op extra SRCS norm_op.cc)
 
 # 3.extra ops
+add_operator(bitwise_ops extra SRCS bitwise_ops.cc)
 add_operator(reverse_op extra SRCS reverse_op.cc)
 add_operator(inverse_op extra SRCS inverse_op.cc)
 add_operator(sparse_conv_op extra SRCS sparse_conv_op.cc)
@@ -209,6 +210,7 @@ add_operator(strided_slice_op extra SRCS strided_slice_op.cc)
 add_operator(where_op extra SRCS where_op.cc)
 add_operator(unique_with_counts_op extra SRCS unique_with_counts_op.cc)
 add_operator(unique_op extra SRCS unique_op.cc)
+add_operator(viterbi_decode extra SRCS viterbi_decode_op.cc)
 
 # for content-dnn specific
 add_operator(search_aligned_mat_mul_op extra SRCS search_aligned_mat_mul_op.cc)
