@@ -115,6 +115,7 @@ if os.name == 'nt':
     PACKAGE_DIR = fix_package_dir
 
 
+PADDLELITE_VERSION=2.99
 setup(
     name='paddlelite',
     version=PADDLELITE_VERSION,
